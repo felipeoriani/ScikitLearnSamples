@@ -6,27 +6,26 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # define the input set and expected output
-inputSet = [[0, 0], [1, 0], [0, 1], [1, 1]]
-outputSet = [0, 1, 1, 0]
+input_set = [[0, 0], [1, 0], [0, 1], [1, 1]]
+target_set = [0, 1, 1, 0]
 
 # create the classifier based on Multi-Layer perceptron with the following arguments
 model = nn.MLPClassifier(activation='tanh', max_iter=2000, hidden_layer_sizes=(5,))
 
 # train the classifier
-model = model.fit(inputSet, outputSet)
+model = model.fit(input_set, target_set)
 
 # results
-score = model.score(inputSet, outputSet)
-pred = model.predict(inputSet)
-mse = metrics.mean_squared_error(outputSet, pred)
-cm = metrics.confusion_matrix(outputSet, pred, labels=[0, 1])
+score = model.score(input_set, target_set)
+pred = model.predict(input_set)
+mse = metrics.mean_squared_error(target_set, pred)
+cm = metrics.confusion_matrix(target_set, pred, labels=[0, 1])
 cms = str(np.matrix(cm))
 
 # print some metrics
-
 print('score:', score)
 print('predictions: [{:.4f}, {:.4f}, {:.4f}, {:.4f}]'.format(*pred))
-print('expected:', outputSet)
+print('expected:', target_set)
 print('mean squared error: {:.4f}'.format(mse))
 print('confusion matrix:')
 print(cms)

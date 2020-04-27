@@ -5,24 +5,24 @@ import sklearn.metrics as metrics
 import matplotlib.pyplot as plt
 
 # define the input set and expected output
-inputSet = [[0, 0], [0, 1], [1, 0], [1, 1]]
-outputSet = [0, 1, 1, 0]
+input_set = [[0, 0], [0, 1], [1, 0], [1, 1]]
+target_set = [0, 1, 1, 0]
 
 # create the classifier based on Multi-Layer perceptron with the following arguments
-model = nn.MLPRegressor(activation='tanh', max_iter=5000, hidden_layer_sizes=(10,))
+model = nn.MLPRegressor(activation='tanh', max_iter=5000, hidden_layer_sizes=(5,))
 
 # train the classifier
-model = model.fit(inputSet, outputSet)
+model = model.fit(input_set, target_set)
 
 # results
-score = model.score(inputSet, outputSet)
-pred = model.predict(inputSet)
-mse = metrics.mean_squared_error(outputSet, pred)
+score = model.score(input_set, target_set)
+pred = model.predict(input_set)
+mse = metrics.mean_squared_error(target_set, pred)
 
 # print some metrics
 print('score:', score)
 print('predictions: [{:.4f}, {:.4f}, {:.4f}, {:.4f}]'.format(*pred))
-print('expected:', outputSet)
+print('expected:', target_set)
 print('mean squared error: {:.4f}'.format(mse))
 
 # some asserts for the trained model
